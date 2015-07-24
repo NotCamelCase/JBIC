@@ -1,0 +1,19 @@
+﻿<scene name="Test Scene">
+	<shaderProgram validate="true" use="true">
+		<vertex name="assets/textured_phong.vert" />
+		<fragment name="assets/textured_phong.frag" />
+	</shaderProgram>
+	
+	<camera aspectRatio="0.0" near="2.5" far="500.0" fov="45">
+		<position x="35" y="32" z="-75"/>
+	</camera>
+	
+	<light type="POINT" intensity="1.5">
+		<position x="0" y="50" z="10" w="1"/>
+		<color x="0.85" y="0.37" z="0.34"/>
+	</light>
+	
+	<sceneObject>
+		<mesh name="assets/house.obj" hasUV="true" genTangents="false"/>
+	</sceneObject>
+</scene>

@@ -1,0 +1,52 @@
+<scene name="HDR Tone Mapping">
+	<!-- Main Blinn-Phong lighting -->
+	<shaderProgram validate="true" use="true">
+		<vertex name="assets/phong_multilights.vert" />
+		<fragment name="assets/phong_multilights.frag" />
+	</shaderProgram>
+	
+	<!-- Post-processing -->
+	<shaderProgram validate="true" use="false">
+		<vertex name="assets/full_screen_quad.vert" />
+		<fragment name="assets/hdr_tonemapping.frag" />
+	</shaderProgram>
+
+	<camera aspectRatio="0.0" near="2.5" far="500.0" fov="45">
+		<position x="12.5" y="7.5" z="1.5"/>
+	</camera>
+	
+	<light type="POINT" intensity="1.75">
+		<position x="0" y="10" z="0" w="1"/>
+		<color x="1.5" y="1.5" z="1.5"/>
+		<attenuation linear="0.0" constant="0.0" exponent="1.0" />
+	</light>
+	
+	<light type="POINT" intensity="2.15">
+		<position x="10" y="0" z="0" w="1"/>
+		<color x="1.0" y="1.0" z="1.0"/>
+		<attenuation linear="0.0" constant="0.0" exponent="1.0" />
+	</light>
+	
+	<light type="POINT" intensity="3.15">
+		<position x="0" y="0" z="-10" w="1"/>
+		<color x="1.0" y="1.0" z="1.0"/>
+		<attenuation linear="0.0" constant="0.0" exponent="1.0" />
+	</light>
+	
+	<sceneObject>
+		<mesh name="assets/cube.obj" hasUV="true" genTangents="false">
+			<translate x="4.5" y="4.25" z="-2.3"/>
+		</mesh>
+	</sceneObject>
+	
+	<sceneObject>
+		<mesh name="assets/cube.obj" hasUV="true" genTangents="false">
+			<translate x="1.8" y="4.25" z="3.0"/>
+		</mesh>
+	</sceneObject>
+	
+	<sceneObject>
+		<mesh name="assets/panel.obj" hasUV="true" genTangents="false">
+		</mesh>
+	</sceneObject>
+</scene>

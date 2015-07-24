@@ -1,0 +1,11 @@
+# Blender MTL File: 'hjmediastudios_house_dist.blend'
+# Material Count: 1
+newmtl House
+Ns 200
+Ka 0.500000 0.50000 0.500000
+Kd 0.656206 0.640000 0.146658
+Ks 0.758445 0.650000 0.488981
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Tayfun\Desktop\6447_house_dist\Lightmap.png

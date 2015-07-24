@@ -1,0 +1,16 @@
+<scene name="Environment Mapping">
+	<shaderProgram validate="true" use="true">
+		<vertex name="assets/env_map.vert" />
+		<fragment name="assets/env_map.frag" />
+	</shaderProgram>
+	
+	<camera aspectRatio="0.0" near="2.5" far="500.0" fov="45">
+		<position x="0" y="0" z="2.5"/>
+	</camera>
+	
+	<sceneObject>
+		<mesh name="assets/cube.obj" hasUV="true" genTangents="false">
+			<translate x="0" y="0" z="-2.5"  />
+		</mesh>
+	</sceneObject>
+</scene>

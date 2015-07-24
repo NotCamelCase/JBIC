@@ -1,0 +1,9 @@
+newmtl House
+Ns 96.078431
+Ka 0.500000 0.5000000 0.5000000
+Kd 0.406206 0.640000 0.146658
+Ks 0.208445 0.650000 0.388981
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd C:\Users\Tayfun\Documents\Visual Studio 2013\Projects\JBIC\assets\Lightmap.png

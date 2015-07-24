@@ -1,0 +1,22 @@
+<scene name="Normal Mapping">
+	<shaderProgram validate="true" use="true">
+		<vertex name="assets/normal_map.vert" />
+		<fragment name="assets/normal_map.frag" />
+	</shaderProgram>
+	
+	<camera aspectRatio="0.0" near="2.5" far="500.0" fov="45">
+		<position x="10" y="5" z="1"/>
+	</camera>
+	
+	<light type="POINT" intensity="1.25">
+		<position x="0" y="-15" z="0" w="1"/>
+		<color x="0.85" y="0.85" z="0.85"/>
+	</light>
+	
+	<sceneObject>
+		<mesh name="assets/cube.obj" hasUV="true" genTangents="true">
+			<translate x="6.1" y="3.5" z="0.0"/>
+			<rotate x="0" y="1" z="0" angle="200"/>
+		</mesh>
+	</sceneObject>
+</scene>

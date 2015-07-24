@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JBIC", "JBIC.vcxproj", "{E96BFB1A-3D46-4152-B025-E8F0D375D94E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JBIC_Lighting", "JBIC_Lighting\JBIC_Lighting.vcxproj", "{4657F650-E81B-4A51-A621-87F11FA81422}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JBIC_Texturing", "JBIC_Texturing\JBIC_Texturing.vcxproj", "{C27FE88B-5492-4988-8D5D-209DE524C199}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JBIC_PostProcess", "JBIC_PostProcess\JBIC_PostProcess.vcxproj", "{360A05E7-1C0A-490A-989F-9A7209C6B6C8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JBIC_Shadows", "JBIC_Shadows\JBIC_Shadows.vcxproj", "{BCE4FF11-91EE-440B-BAE2-423991C55297}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E96BFB1A-3D46-4152-B025-E8F0D375D94E} = {E96BFB1A-3D46-4152-B025-E8F0D375D94E}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E96BFB1A-3D46-4152-B025-E8F0D375D94E}.Debug|x64.ActiveCfg = Debug|x64
+		{E96BFB1A-3D46-4152-B025-E8F0D375D94E}.Debug|x64.Build.0 = Debug|x64
+		{E96BFB1A-3D46-4152-B025-E8F0D375D94E}.Release|x64.ActiveCfg = Release|x64
+		{E96BFB1A-3D46-4152-B025-E8F0D375D94E}.Release|x64.Build.0 = Release|x64
+		{4657F650-E81B-4A51-A621-87F11FA81422}.Debug|x64.ActiveCfg = Debug|x64
+		{4657F650-E81B-4A51-A621-87F11FA81422}.Release|x64.ActiveCfg = Release|x64
+		{C27FE88B-5492-4988-8D5D-209DE524C199}.Debug|x64.ActiveCfg = Debug|x64
+		{C27FE88B-5492-4988-8D5D-209DE524C199}.Release|x64.ActiveCfg = Release|x64
+		{360A05E7-1C0A-490A-989F-9A7209C6B6C8}.Debug|x64.ActiveCfg = Debug|x64
+		{360A05E7-1C0A-490A-989F-9A7209C6B6C8}.Release|x64.ActiveCfg = Release|x64
+		{BCE4FF11-91EE-440B-BAE2-423991C55297}.Debug|x64.ActiveCfg = Debug|x64
+		{BCE4FF11-91EE-440B-BAE2-423991C55297}.Debug|x64.Build.0 = Debug|x64
+		{BCE4FF11-91EE-440B-BAE2-423991C55297}.Release|x64.ActiveCfg = Release|x64
+		{BCE4FF11-91EE-440B-BAE2-423991C55297}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

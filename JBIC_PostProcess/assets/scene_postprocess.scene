@@ -1,0 +1,39 @@
+<scene name="Gaussian Blur">
+	<!-- Main lighting -->
+	<shaderProgram validate="true" use="true">
+		<vertex name="assets/textured_phong.vert" />
+		<fragment name="assets/textured_phong.frag" />
+	</shaderProgram>
+	
+	<!-- Post-processing -->
+	<shaderProgram validate="true" use="false">
+		<vertex name="assets/full_screen_quad.vert" />
+		<fragment name="assets/gaussian.frag" />
+	</shaderProgram>
+
+	<camera aspectRatio="0.0" near="2.5" far="500.0" fov="45">
+		<position x="12.5" y="7.5" z="1.5"/>
+	</camera>
+	
+	<light type="POINT" intensity="1.25">
+		<position x="10" y="15" z="0" w="1"/>
+		<color x="0.85" y="0.85" z="0.85"/>
+	</light>
+	
+	<sceneObject>
+		<mesh name="assets/cube.obj" hasUV="true" genTangents="false">
+			<translate x="6.0" y="4.25" z="-2.3"/>
+		</mesh>
+	</sceneObject>
+	
+	<sceneObject>
+		<mesh name="assets/cube.obj" hasUV="true" genTangents="false">
+			<translate x="5.8" y="4.25" z="3.0"/>
+		</mesh>
+	</sceneObject>
+	
+	<sceneObject>
+		<mesh name="assets/plane.obj" hasUV="true" genTangents="false">
+		</mesh>
+	</sceneObject>
+</scene>
