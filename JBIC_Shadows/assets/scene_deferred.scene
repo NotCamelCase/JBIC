@@ -15,7 +15,7 @@
 	</camera>
 	
 	<light type="POINT" intensity="1.25">
-		<position x="7.5" y="5" z="2.5" w="1"/>
+		<position x="-7.5" y="15" z="-5" w="1"/>
 		<color x="1.0" y="1.0" z="1.0"/>
 		<attenuation linear="0.0" constant="0.0" exponent="1.0" />
 		<frustum near="0.1" far="100.0" fovY="45.0" />

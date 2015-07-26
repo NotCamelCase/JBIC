@@ -1,10 +1,10 @@
 #version 450
 
-uniform sampler2D PosTex;
-uniform sampler2D NormalTex;
-uniform sampler2D MatKDTex;
-uniform sampler2D MatKSTex;
-uniform sampler2D MatKATex;
+layout (binding = 1) uniform sampler2D PosTex;
+layout (binding = 2) uniform sampler2D NormalTex;
+layout (binding = 3) uniform sampler2D MatKaTex;
+layout (binding = 4) uniform sampler2D MatKdTex;
+layout (binding = 5) uniform sampler2D MatKsTex;
 
 in vec2 UV_VS;
 
@@ -35,16 +35,16 @@ void BRDF_BlinnPhong()
 	vec3 s;
 	vec3 normal = texture(NormalTex, UV_VS).xyz;
 	normal = gl_FrontFacing ? normal : -normal;
-	vec4 pos = texture(PosTex, UV_VS);
+	vec3 pos = texture(PosTex, UV_VS).xyz;
 	float lightAtten = 1.0;
-	vec3 lightVec = (LightList[0].lightPos_CAM - pos).xyz;
+	vec3 lightVec = (vec3(LightList[0].lightPos_CAM) - pos).xyz;
 	float dist = length(lightVec);
 	lightAtten = 1 / ((LightList[0].atten.constant) + (LightList[0].atten.linear * dist) + (LightList[0].atten.exponent * dist * dist));
 	s = normalize(lightVec);
-	vec3 Ka = texture(MatKATex, UV_VS).rgb;
-	vec3 Ks = texture(MatKSTex, UV_VS).rgb;
-	vec4 Kd_shininess = texture(MatKDTex, UV_VS);
-	vec3 Kd = Kd_shininess.rgb; float shininess = Kd_shininess.a;
+	vec3 Ka = texture(MatKaTex, UV_VS).rgb;
+	vec3 Kd = texture(MatKdTex, UV_VS).rgb;
+	vec3 Ks = texture(MatKsTex, UV_VS).rgb;
+	float shininess = 96.0;
 	vec3 ambient = (Ka * LightList[0].lightIntensity);
 	vec3 diffuse = ((Kd * LightList[0].lightColor) * (lightAtten * LightList[0].lightIntensity * max(dot(s, normal), 0.0)));
 	vec3 v = vec3(-pos);

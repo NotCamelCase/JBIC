@@ -18,7 +18,11 @@ public:
 		// Vertex attributes
 		VERTEX_ATTRIB_POS,
 		VERTEX_ATTRIB_NORMAL,
-		VERTEX_ATTRIB_UV
+		VERTEX_ATTRIB_UV,
+
+		MAT_ATTRIB_KD,
+		MAT_ATTRIB_KS,
+		MAT_ATTRIB_KA
 	};
 
 	/** Create a GBuffer texture for each vertex attrib to be fed */
