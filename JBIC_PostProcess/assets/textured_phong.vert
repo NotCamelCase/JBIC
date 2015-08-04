@@ -9,13 +9,21 @@ out vec4 POS_VS_CAM;
 out vec3 NORMAL_VS_CAM;
 out vec2 UV_VS;
 
+
+smooth out vec4 currentVP;
+smooth out vec4 prevVP;
+
 uniform mat4 MODELVIEW;
 uniform mat3 NORMAL;
 uniform mat4 MVP;
+uniform mat4 prev_MVP;
 
 void main()
 {
 	gl_Position = MVP * vec4(in_POS, 1.0);
+	
+	currentVP = gl_Position;
+	prevVP = prev_MVP * vec4(in_POS, 1.0);
 	
 	POS_VS_CAM = MODELVIEW * vec4(in_POS, 1.0);
 	NORMAL_VS_CAM = NORMAL * in_NORMAL;

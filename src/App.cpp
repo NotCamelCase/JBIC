@@ -169,21 +169,14 @@ void App::run()
 {
 	assert(m_scene != nullptr && "Error invalid scene!");
 
-	double frameTime = glfwGetTime();
-	double numFrames = 0.0;
+	double frameTime = .0, currTime = .0, delta = .016;
 	LOG_ME("App started rendering...");
 	while (!glfwWindowShouldClose(m_appWindow))
 	{
-		double currentTime = glfwGetTime();
-		double delta = currentTime - frameTime;
-		numFrames++;
-		if (delta >= 1.0f)
-		{
-			printf("Frame time: %f ms \n", 1000.0 / numFrames);
-			numFrames = 0.0;
-			frameTime += 1.0;
-		}
+		currTime = glfwGetTime();
+		delta = currTime - frameTime;
 		m_scene->update(delta);
+		frameTime = glfwGetTime();
 
 		glfwSwapBuffers(m_appWindow);
 		glfwPollEvents();
@@ -207,10 +200,12 @@ bool App::takeScreenshot()
 	const RenderParams& params = m_scene->getRenderParams();
 	unsigned char* pixels = new unsigned char[params.width * params.height * 4];
 	glReadPixels(0, 0, params.width, params.height, GL_RGBA, GL_UNSIGNED_BYTE, (unsigned char*)pixels);
+#if _DEBUG
 	GLenum error = glGetError();
 	if (error == GL_INVALID_OPERATION) LOG_ME("Invalid operation!");
 	else if (error == GL_INVALID_VALUE) LOG_ME("Invalid value!");
 	else if (error == GL_INVALID_ENUM) LOG_ME("Invalid enum!");
+#endif
 
 	int res = stbi_write_png("assets/shot.png", params.width, params.height, 4, pixels, 0);
 

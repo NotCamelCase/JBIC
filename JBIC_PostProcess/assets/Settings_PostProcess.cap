@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CaptureSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Options>
+    <AllowVSync>false</AllowVSync>
+    <AllowFullscreen>true</AllowFullscreen>
+    <DebugDeviceMode>false</DebugDeviceMode>
+    <CaptureCallstacks>true</CaptureCallstacks>
+    <CaptureCallstacksOnlyDraws>false</CaptureCallstacksOnlyDraws>
+    <DelayForDebugger>0</DelayForDebugger>
+    <VerifyMapWrites>false</VerifyMapWrites>
+    <HookIntoChildren>false</HookIntoChildren>
+    <RefAllResources>false</RefAllResources>
+    <SaveAllInitials>false</SaveAllInitials>
+    <CaptureAllCmdLists>true</CaptureAllCmdLists>
+  </Options>
+  <Inject>false</Inject>
+  <AutoStart>false</AutoStart>
+  <Executable>C:\Users\Tayfun\Documents\Visual Studio 2015\Projects\JBIC\JBIC_PostProcess\bin\Release\JBIC_PostProcess.exe</Executable>
+  <WorkingDir>C:\Users\Tayfun\Documents\Visual Studio 2015\Projects\JBIC\JBIC_PostProcess</WorkingDir>
+  <CmdLine />
+</CaptureSettings>

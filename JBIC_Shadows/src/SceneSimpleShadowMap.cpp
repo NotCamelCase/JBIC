@@ -126,7 +126,6 @@ void SceneSimpleShadowMap::update(double delta)
 	// Render to shadow FBO
 	glBindFramebuffer(GL_FRAMEBUFFER, m_shadowFBO);
 	glClear(GL_DEPTH_BUFFER_BIT);
-	glViewport(0, 0, g_shadowParams.resWidth, g_shadowParams.resHeight);
 
 	glCullFace(GL_FRONT);
 	renderScene(delta);
@@ -138,7 +137,6 @@ void SceneSimpleShadowMap::update(double delta)
 	// Render to default frame buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glViewport(0, 0, m_params.width, m_params.height);
 	glCullFace(GL_BACK);
 	renderScene(delta);
 }
@@ -236,7 +234,8 @@ bool SceneSimpleShadowMap::createShadowFBO()
 	glGenTextures(1, &shadowTex);
 	glActiveTexture(GL_TEXTURE3);
 	glBindTexture(GL_TEXTURE_2D, shadowTex);
-	glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT16, g_shadowParams.resWidth, g_shadowParams.resHeight);
+	glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT16, g_shadowParams.resWidth * getAspectRatio(),
+		g_shadowParams.resHeight * getAspectRatio());
 
 	// Set texture filtering state
 #if PCF_ENABLED // Bilinear filtering

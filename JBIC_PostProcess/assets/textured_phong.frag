@@ -4,7 +4,10 @@ in vec4 POS_VS_CAM;
 in vec3 NORMAL_VS_CAM;
 in vec2 UV_VS;
 
-layout (binding = 0) uniform sampler2D Tex0;
+smooth in vec4 currentVP;
+smooth in vec4 prevVP;
+
+uniform sampler2D MainTex;
 
 struct LightBlock
 {
@@ -24,7 +27,8 @@ struct MaterialBlock
 };
 uniform MaterialBlock Material;
 
-out vec4 fragCol;
+layout (location = 0) out vec4 fragCol;
+layout (location = 1) out vec2 velocity;
 
 /** Pseudo-BRDF Blinn-Phong shading. It bears __improvement__ */
 void BRDF_BlinnPhong(in vec4 pos, in vec3 normal, out vec3 ambient, out vec3 diffuse, out vec3 spec)
@@ -62,8 +66,13 @@ void main()
 		BRDF_BlinnPhong(POS_VS_CAM, -NORMAL_VS_CAM, ambient, diffuse, spec);
 	}
 	
-	vec4 texCol = texture(Tex0, UV_VS);
+	vec4 texCol = texture(MainTex, UV_VS);
 	fragCol = vec4(ambient + diffuse, 1.0) * texCol + vec4(spec, 1.0);
+	
+	vec2 t2 = (currentVP.xy / currentVP.w) * 0.5 + 0.5;
+	vec2 t1 = (prevVP.xy / prevVP.w) * 0.5 + 0.5;
+	
+	velocity = t2 - t1;
 }
 
 

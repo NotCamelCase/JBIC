@@ -71,12 +71,14 @@
     <ClCompile Include="src\main_postprocess.cpp" />
     <ClCompile Include="src\SceneBloom.cpp" />
     <ClCompile Include="src\SceneGaussianBlur.cpp" />
+    <ClCompile Include="src\SceneMotionBlur.cpp" />
     <ClCompile Include="src\ScenePostProcessSimple.cpp" />
     <ClCompile Include="src\SceneToneMapping.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\SceneBloom.h" />
     <ClInclude Include="include\SceneGaussianBlur.h" />
+    <ClInclude Include="include\SceneMotionBlur.h" />
     <ClInclude Include="include\ScenePostProcessSimple.h" />
     <ClInclude Include="include\SceneToneMapping.h" />
   </ItemGroup>

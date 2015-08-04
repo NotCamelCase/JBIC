@@ -154,14 +154,21 @@ void SceneLoader::processLight(tinyxml2::XMLNode* node)
 	const glm::vec4 pos = parseVec4(node->FirstChildElement("position"));
 	const glm::vec3 col = parseVec3(node->FirstChildElement("color"));
 
-	LightFrustumParams* frustumParams = new LightFrustumParams(projType);
+	LightFrustumParams* frustumParams = nullptr;
 	const tinyxml2::XMLElement* frustumNode = node->FirstChildElement("frustum");
-	assert(frustumNode && "Failed to parse light frustum parameters!");
-	frustumNode->QueryFloatAttribute("near", &frustumParams->nearPlane);
-	frustumNode->QueryFloatAttribute("far", &frustumParams->farPlane);
-	frustumNode->QueryFloatAttribute("fovY", &frustumParams->fovY);
+	bool castShadows = false;
+	if (frustumNode)
+	{
+		LOG_ME("Light casting shadows");
+		frustumParams = new LightFrustumParams(projType);
+		assert(frustumNode && "Failed to parse light frustum parameters!");
+		frustumNode->QueryFloatAttribute("near", &frustumParams->nearPlane);
+		frustumNode->QueryFloatAttribute("far", &frustumParams->farPlane);
+		frustumNode->QueryFloatAttribute("fovY", &frustumParams->fovY);
+		castShadows = true;
+	}
 
-	Light* light = new Light(m_scene, type, pos, frustumParams);
+	Light* light = new Light(m_scene, type, pos, frustumParams, castShadows);
 	light->setLightColor(col);
 	light->setLightIntensity(intensity);
 

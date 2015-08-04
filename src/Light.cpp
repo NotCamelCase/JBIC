@@ -6,11 +6,14 @@
 
 using namespace glm;
 
-Light::Light(Scene* scene, LightType type, const glm::vec4& pos, LightFrustumParams* params)
+Light::Light(Scene* scene, LightType type, const glm::vec4& pos, LightFrustumParams* params, bool castShadows)
 	: m_parentScene(scene), m_type(type), m_lightIntensity(.25), m_lightColor(.5), m_position(pos),
-	m_frustumParams(params), m_MVP(0.f)
+	m_frustumParams(params), m_MVP(0.f), m_castingShadows(castShadows)
 {
-	calcLightFrustum();
+	if (m_castingShadows)
+	{
+		calcLightFrustum();
+	}
 }
 
 Light::~Light()
@@ -20,7 +23,10 @@ Light::~Light()
 
 void Light::update()
 {
-	calcLightFrustum();
+	if (m_castingShadows)
+	{
+		calcLightFrustum();
+	}
 }
 
 void Light::calcLightFrustum()

@@ -4,6 +4,7 @@
 #include <SceneBloom.h>
 #include <SceneGaussianBlur.h>
 #include <SceneToneMapping.h>
+#include <SceneMotionBlur.h>
 
 int main(int argc, char* argv[])
 {
@@ -16,7 +17,8 @@ int main(int argc, char* argv[])
 	App* app = new App();
 	//Scene* scene = new SceneToneMapping(app, params);
 	//Scene* scene = new SceneGaussianBlur(app, params);
-	Scene* scene = new SceneBloom(app, params);
+	//Scene* scene = new SceneBloom(app, params);
+	Scene* scene = new SceneMotionBlur(app, params);
 	app->fire(scene);
 
 	SAFE_DELETE(app);

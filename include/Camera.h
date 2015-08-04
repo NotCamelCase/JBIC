@@ -30,7 +30,8 @@ public:
 	Camera(float aspect, float near = 0.1f, float far = 100.f, float fov = 45);
 	~Camera();
 
-	const glm::mat4 getMVP(const glm::mat4 modelMatrix) { return m_projMatrix * m_viewMatrix * modelMatrix; }
+	const glm::mat4 getMVP(const glm::mat4& modelMatrix) { return m_projMatrix * m_viewMatrix * modelMatrix; }
+	const glm::mat4 getViewProjMatrix() const { return m_projMatrix * m_viewMatrix; }
 
 	DECLARE_GETTER(const glm::mat4&, ViewMatrix, m_viewMatrix);
 	DECLARE_SETTER_BY_CONST_REF(glm::mat4, ViewMatrix, m_viewMatrix);

@@ -42,8 +42,14 @@ bool GBuffer::fillGBuffer()
 	// Depth - POS - NORMAL - MAT_KA - MAT_KD - MAT_KS
 	GLenum db[] = { GL_NONE, GL_COLOR_ATTACHMENT0, GL_COLOR_ATTACHMENT1,
 		GL_COLOR_ATTACHMENT2, GL_COLOR_ATTACHMENT3, GL_COLOR_ATTACHMENT4 };
-	glDrawBuffers(6, db);
-
+	const uint numDrawBuffers = 6;
+#ifdef DEBUG
+	GLint maxDrawBuffers;
+	glGetIntegerv(GL_MAX_DRAW_BUFFERS, &maxDrawBuffers);
+	if (numDrawBuffers > maxDrawBuffers)
+		LOG_ME("Frame buffer attachments exceeding max available draw buffers!!!");
+#endif
+	glDrawBuffers(numDrawBuffers, db);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	return glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE;

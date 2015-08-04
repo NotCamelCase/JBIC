@@ -55,7 +55,7 @@ struct ShadowMapParams
 class Light : public MovableObject
 {
 public:
-	Light(Scene* scene, LightType type, const glm::vec4& position = glm::vec4(1.f), LightFrustumParams* params = nullptr);
+	Light(Scene* scene, LightType type, const glm::vec4& position = glm::vec4(1.f), LightFrustumParams* params = nullptr, bool cast = false);
 	~Light();
 
 	DECLARE_GETTER(const glm::vec4&, Position, m_position);
@@ -80,6 +80,9 @@ public:
 	DECLARE_GETTER(LightFrustumParams*, LightFrustumParams, m_frustumParams);
 	DECLARE_SETTER_BY_VALUE(LightFrustumParams*, LightFrustumParams, m_frustumParams);
 
+	bool isCastingShadows() const { return m_castingShadows; }
+	void setCastingShadows(bool val) { m_castingShadows = val; }
+
 	const glm::mat4& getMVP() const { return m_MVP; }
 
 	void update();
@@ -103,4 +106,6 @@ private:
 	float m_constantAtten;
 	float m_linearAtten;
 	float m_expAtten;
+
+	bool m_castingShadows;
 };
