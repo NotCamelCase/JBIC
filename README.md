@@ -1,6 +1,6 @@
 # JBIC #
 
-JBIC is a demo framework with a set of examples in which I've implemented following fundamental rendering techniques using OpenGL 4.5 **Just Because I Can**.
+JBIC is a demo framework with a set of examples in which I've implemented following fundamental rendering techniques using OpenGL 4.5 **J**ust **B**ecause **I C**an.
 
 * Texturing
     * Multi-texture
@@ -11,7 +11,8 @@ JBIC is a demo framework with a set of examples in which I've implemented follow
     * Per-fragment Point/Spot/Directional aka Blinn-Phong
     * Per-vertex Gouraud lighting
 * Post Process FX
-    * Gaussian & Motion Blur
+    * Motion Blur 
+    * Gaussian Blur
     * Edge detection
     * Sharpening
     * Bloom
