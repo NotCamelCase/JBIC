@@ -99,7 +99,7 @@ void SceneMotionBlur::renderScene(double delta)
 
 	glClearColor(.5f, .5f, .5f, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	
+
 	m_sceneCam->update();
 
 	m_shadingProg->setUniform("Light.lightPos_CAM",

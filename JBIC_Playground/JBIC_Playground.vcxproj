@@ -11,8 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BCE4FF11-91EE-440B-BAE2-423991C55297}</ProjectGuid>
-    <RootNamespace>JBIC_Shadows</RootNamespace>
+    <ProjectGuid>{84C9939D-F8D1-46BD-BD48-1FF722A0764D}</ProjectGuid>
+    <RootNamespace>JBIC_Playground</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -33,11 +34,11 @@
   </ImportGroup>
   <ImportGroup Label="Shared">
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\JBIC_Common.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\JBIC_Common.props" />
   </ImportGroup>
@@ -68,16 +69,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\main_shadows.cpp" />
-    <ClCompile Include="src\SceneSimpleShadowMap.cpp" />
+    <ClCompile Include="src\main_playground.cpp" />
+    <ClCompile Include="src\SceneDeferred.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\SceneDeferred.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JBIC.vcxproj">
       <Project>{e96bfb1a-3d46-4152-b025-e8f0d375d94e}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\SceneSimpleShadowMap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

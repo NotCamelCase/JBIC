@@ -58,8 +58,8 @@ bool GBuffer::fillGBuffer()
 GLuint GBuffer::createGBufferTexture(GBufferTexType texType)
 {
 	GLuint tex;
-	glActiveTexture(m_texUnitStart++);
 	glGenTextures(1, &tex);
+	glActiveTexture(m_texUnitStart++);
 	glBindTexture(GL_TEXTURE_2D, tex);
 
 	glTexStorage2D(GL_TEXTURE_2D, 1, getTextureFormat(texType), m_scene->getRenderParams().width, m_scene->getRenderParams().height);

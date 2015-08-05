@@ -1,0 +1,61 @@
+<scene name="Deferred Shading">
+	<!-- Deferred shading pass -->
+	<shaderProgram validate="true" use="false">
+		<vertex name="assets/deferred_pass.vert" />
+		<fragment name="assets/deferred_pass.frag" />
+	</shaderProgram>
+	
+	<shaderProgram validate="true" use="true">
+		<vertex name="assets/deferred_shading.vert"/>
+		<fragment name="assets/deferred_shading.frag" />
+	</shaderProgram>
+
+	<camera aspectRatio="0.0" near="2.5" far="500.0" fov="45">
+		<position x="15" y="7.5" z="1.5"/>
+	</camera>
+	
+	<light type="POINT" intensity="1.25">
+		<position x="-7.5" y="15" z="-5" w="1"/>
+		<color x="1.0" y="1.0" z="1.0"/>
+		<attenuation linear="0.0" constant="0.0" exponent="1.0" />
+		<frustum near="0.1" far="100.0" fovY="45.0" />
+	</light>
+	
+	<light type="POINT" intensity="1.75">
+		<position x="7.5" y="15" z="-5" w="1"/>
+		<color x="1.0" y="1.0" z="1.0"/>
+		<attenuation linear="0.0" constant="0.0" exponent="1.0" />
+		<frustum near="0.1" far="100.0" fovY="45.0" />
+	</light>
+	
+	<light type="POINT" intensity="1.13">
+		<position x="-5" y="5" z="5" w="1"/>
+		<color x="1.0" y="1.0" z="1.0"/>
+		<attenuation linear="0.0" constant="0.0" exponent="1.0" />
+		<frustum near="0.1" far="100.0" fovY="45.0" />
+	</light>
+	
+	<light type="POINT" intensity="1.35">
+		<position x="-15" y="2.5" z="15" w="1"/>
+		<color x="1.0" y="1.0" z="1.0"/>
+		<attenuation linear="0.0" constant="0.0" exponent="1.0" />
+		<frustum near="0.1" far="100.0" fovY="45.0" />
+	</light>
+	
+	<sceneObject>
+		<mesh name="assets/cube.obj" hasUV="true" genTangents="false">
+			<translate x="2.5" y="5.15" z="-2.95"/>
+		</mesh>
+	</sceneObject>
+	
+	<sceneObject>
+		<mesh name="assets/weirdo.obj" hasUV="true" genTangents="false">
+			<translate x="1.1" y="3.5" z="6.2"/>
+		</mesh>
+	</sceneObject>
+	
+	<sceneObject>
+		<mesh name="assets/caster.obj" hasUV="true" genTangents="false">
+		</mesh>
+	</sceneObject>
+</scene>

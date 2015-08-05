@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main_shadows.cpp">
+    <ClCompile Include="src\main_playground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\SceneSimpleShadowMap.cpp">
+    <ClCompile Include="src\SceneDeferred.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\SceneSimpleShadowMap.h">
+    <ClInclude Include="include\SceneDeferred.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
