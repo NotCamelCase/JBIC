@@ -8,7 +8,7 @@
 	<!-- Post-processing -->
 	<shaderProgram validate="true" use="false">
 		<vertex name="assets/full_screen_quad.vert" />
-		<fragment name="assets/gaussian.frag" />
+		<fragment name="assets/sepia.frag" />
 	</shaderProgram>
 
 	<camera aspectRatio="0.0" near="2.5" far="500.0" fov="45">

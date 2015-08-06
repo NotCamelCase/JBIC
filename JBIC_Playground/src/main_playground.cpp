@@ -2,6 +2,7 @@
 
 #include <App.h>
 #include <SceneDeferred.h>
+#include <SceneSSAO.h>
 
 int main(int, char* argv[])
 {
@@ -13,7 +14,8 @@ int main(int, char* argv[])
 
 	App* app = new App();
 	Scene* scene = nullptr;
-	scene = new SceneDeferred(app, params);
+	//scene = new SceneDeferred(app, params);
+	scene = new SceneSSAO(app, params);
 	app->fire(scene);
 
 	SAFE_DELETE(app);

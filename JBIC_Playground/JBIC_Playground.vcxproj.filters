@@ -21,9 +21,15 @@
     <ClCompile Include="src\SceneDeferred.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\SceneSSAO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\SceneDeferred.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SceneSSAO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

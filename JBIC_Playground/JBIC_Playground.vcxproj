@@ -71,9 +71,11 @@
   <ItemGroup>
     <ClCompile Include="src\main_playground.cpp" />
     <ClCompile Include="src\SceneDeferred.cpp" />
+    <ClCompile Include="src\SceneSSAO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\SceneDeferred.h" />
+    <ClInclude Include="include\SceneSSAO.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JBIC.vcxproj">

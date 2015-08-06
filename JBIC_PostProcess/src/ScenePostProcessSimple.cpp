@@ -104,7 +104,7 @@ void ScenePostProcessSimple::renderScene(double delta)
 
 	// Render plane
 	{
-		m_shadingProg->setUniform("Tex0", 0);
+		m_shadingProg->setUniform("MainTex", 0);
 		SceneObject* obj = m_sceneObjects[1];
 		obj->update(delta);
 
@@ -125,7 +125,7 @@ void ScenePostProcessSimple::renderScene(double delta)
 
 	// Render box
 	{
-		m_shadingProg->setUniform("Tex0", 1);
+		m_shadingProg->setUniform("MainTex", 1);
 		SceneObject* obj = m_sceneObjects[0];
 		obj->rotate(25 * delta, vec3(0, 1, 0));
 		obj->update(delta);

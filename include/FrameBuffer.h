@@ -8,7 +8,7 @@ class FrameBuffer
 {
 public:
 	/** Frame Buffer Object to be used for off-screen rendering, RTT, post-process effects */
-	FrameBuffer(Scene* scene, uint w, uint h, bool useDepth, GLuint rttFormat = GL_RGBA);
+	FrameBuffer(Scene* scene, uint w, uint h, bool useDepth, GLuint rttFormat = GL_RGBA8);
 	~FrameBuffer();
 
 	DECLARE_GETTER(bool, HasDepthAttachement, m_hasDepthAttachement);

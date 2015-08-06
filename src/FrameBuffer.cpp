@@ -6,7 +6,7 @@
 #include <App.h>
 #include <Scene.h>
 
-uint FrameBuffer::s_activeTexID = GL_TEXTURE3;
+uint FrameBuffer::s_activeTexID = GL_TEXTURE2;
 
 FrameBuffer::FrameBuffer(Scene* scene, uint w, uint h, bool useDepth, GLuint rttFormat)
 	: m_scene(scene), m_width(w), m_height(h), m_handle(useDepth), m_depthHandle(0),
@@ -31,16 +31,15 @@ void FrameBuffer::setupFBO()
 
 	// Create render texture target
 	glGenTextures(1, &m_rttHandle);
-	glActiveTexture(s_activeTexID);
+	glActiveTexture(s_activeTexID++);
 	glBindTexture(GL_TEXTURE_2D, m_rttHandle);
-
-	// Increment active texture id
-	FrameBuffer::s_activeTexID++;
 
 	// Data is NULL for current render texture
 	glTexStorage2D(GL_TEXTURE_2D, 1, m_rttFormat, m_width, m_height);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_rttHandle, 0);
 

@@ -4,8 +4,10 @@ in vec4 POS_VS_CAM;
 in vec3 NORMAL_VS_CAM;
 in vec2 UV_VS;
 
-smooth in vec4 currentVP;
-smooth in vec4 prevVP;
+#ifdef VELOCITY_BUFFER
+	smooth in vec4 currentVP;
+	smooth in vec4 prevVP;
+#endif
 
 uniform sampler2D MainTex;
 
@@ -28,7 +30,9 @@ struct MaterialBlock
 uniform MaterialBlock Material;
 
 layout (location = 0) out vec4 fragCol;
+#ifdef VELOCITY_BUFFER
 layout (location = 1) out vec2 velocity;
+#endif
 
 /** Pseudo-BRDF Blinn-Phong shading. It bears __improvement__ */
 void BRDF_BlinnPhong(in vec4 pos, in vec3 normal, out vec3 ambient, out vec3 diffuse, out vec3 spec)
@@ -69,10 +73,12 @@ void main()
 	vec4 texCol = texture(MainTex, UV_VS);
 	fragCol = vec4(ambient + diffuse, 1.0) * texCol + vec4(spec, 1.0);
 	
+#ifdef VELOCITY_BUFFER
 	vec2 t2 = (currentVP.xy / currentVP.w) * 0.5 + 0.5;
 	vec2 t1 = (prevVP.xy / prevVP.w) * 0.5 + 0.5;
-	
+
 	velocity = t2 - t1;
+#endif
 }
 
 
