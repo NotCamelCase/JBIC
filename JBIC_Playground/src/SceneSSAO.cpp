@@ -29,7 +29,6 @@ SceneSSAO::SceneSSAO(App* app, const RenderParams& params)
 SceneSSAO::~SceneSSAO()
 {
 	SAFE_DELETE(m_loader);
-
 	SAFE_DELETE(m_gbuffer);
 }
 
@@ -45,6 +44,7 @@ void SceneSSAO::setup()
 	m_geoPass = m_programs[0];
 	m_deferredShading = m_programs[1];
 
+	m_deferredShading->use();
 	for (int i = 0; i < m_lightList.size(); i++)
 	{
 		const Light* light = m_lightList[i];
@@ -88,6 +88,42 @@ void SceneSSAO::renderScene(double delta)
 	deferredShadingPass(delta);
 }
 
+void SceneSSAO::createSSAO_FBO()
+{
+	// Generate and bind the framebuffer
+	glGenFramebuffers(1, &m_fboSSAO);
+	glBindFramebuffer(GL_FRAMEBUFFER, m_fboSSAO);
+
+	// Create render texture
+	GLuint renderTex;
+	glGenTextures(1, &renderTex);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, renderTex);
+	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGBA8, m_params.width, m_params.height);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	// Bind the texture to the FBO
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, renderTex, 0);
+
+	// Create velocity buffer
+	GLuint aoTex;
+	glGenTextures(1, &aoTex);
+	glActiveTexture(GL_TEXTURE3);
+	glBindTexture(GL_TEXTURE_2D, aoTex);
+	glTexStorage2D(GL_TEXTURE_2D, 1, GL_RG16F, m_params.width, m_params.height);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, aoTex, 0);
+
+	// Set the targets for the fragment output variables
+	GLenum drawBuffers[] = { GL_COLOR_ATTACHMENT0 };
+	glDrawBuffers(1, drawBuffers);
+
+	bool res = glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE;
+
+	// Unbind the framebuffer, and revert to default framebuffer
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
 void SceneSSAO::geometryPass(double delta)
 {
 	m_geoPass->use();
@@ -95,7 +131,7 @@ void SceneSSAO::geometryPass(double delta)
 	glBindFramebuffer(GL_FRAMEBUFFER, m_gbuffer->getFBO());
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.f, 0.f, 1.f, 1.f);
+	glClearColor(0.f, 0.5f, 23.f, 1.f);
 
 	m_sceneCam->update();
 
@@ -109,6 +145,7 @@ void SceneSSAO::geometryPass(double delta)
 		mv = m_sceneCam->getViewMatrix() * obj->getWorldTransform();
 		mvp = m_sceneCam->getMVP(obj->getWorldTransform());
 
+		// Pass to shader anyway though only needed for when non-uniform scales are used!
 		normal = mat3(vec3(mv[0]), vec3(mv[1]), vec3(mv[2]));
 
 		m_geoPass->setUniform("MODELVIEW", mv);
@@ -122,6 +159,7 @@ void SceneSSAO::geometryPass(double delta)
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
+	glFlush();
 	glFinish();
 }
 
@@ -146,6 +184,19 @@ void SceneSSAO::deferredShadingPass(double delta)
 	m_deferredShading->setUniform("MatKaTex", 2);
 	m_deferredShading->setUniform("MatKdTex", 3);
 	m_deferredShading->setUniform("MatKsTex", 4);
+
+	glBindVertexArray(m_fsq);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindVertexArray(0);
+}
+
+void SceneSSAO::ssaoPass()
+{
+	m_ssao->use();
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	m_ssao->setUniform("AOTex", 0);
 
 	glBindVertexArray(m_fsq);
 	glDrawArrays(GL_TRIANGLES, 0, 6);

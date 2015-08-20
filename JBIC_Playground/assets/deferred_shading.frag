@@ -5,10 +5,11 @@ layout (binding = 2) uniform sampler2D NormalTex;
 layout (binding = 3) uniform sampler2D MatKaTex;
 layout (binding = 4) uniform sampler2D MatKdTex;
 layout (binding = 5) uniform sampler2D MatKsTex;
+layout (binding = 6) uniform sampler2D AOTex;
 
 in vec2 UV_VS;
 
-#define NUM_LIGHTS 4
+#define NUM_LIGHTS 1
 
 struct Attenuation
 {
@@ -42,7 +43,7 @@ vec4 BRDF_BlinnPhong(int i)
 	float dist = length(lightVec);
 	lightAtten = 1 / ((LightList[i].atten.constant) + (LightList[i].atten.linear * dist) + (LightList[i].atten.exponent * dist * dist));
 	s = normalize(lightVec);
-	vec3 Ka = texture(MatKaTex, UV_VS).rgb;
+	vec3 Ka = texture(AOTex, UV_VS()).rgb;
 	vec3 Kd = texture(MatKdTex, UV_VS).rgb;
 	vec3 Ks = texture(MatKsTex, UV_VS).rgb;
 	float shininess = 96.0;
@@ -52,7 +53,7 @@ vec4 BRDF_BlinnPhong(int i)
 	vec3 h = normalize(v + s);
 	vec3 spec = ((Ks * LightList[i].lightColor) * (LightList[i].lightIntensity * pow(max(dot(h, normal), 0.0), shininess)));
 	
-	return vec4(ambient + diffuse + spec, 1.0);
+	return vec4(ambient + diffuse + spec, 1.0) * vec4(1.0 - normal, 1.0);
 }
 
 void main()

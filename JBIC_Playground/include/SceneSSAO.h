@@ -30,14 +30,21 @@ private:
 	SceneLoader* m_loader;
 	ShaderProgram* m_deferredShading;
 	ShaderProgram* m_geoPass;
+	ShaderProgram* m_ssao;
 
 	GBuffer* m_gbuffer;
 
+	GLuint m_fboSSAO;
 	GLuint m_fsq;
+
+	void createSSAO_FBO();
 
 	/** Store geometry data of whole scene */
 	void geometryPass(double delta);
 
 	/** Shade deferred full-screen quad */
 	void deferredShadingPass(double delta);
+
+	/* Generate A*/
+	void ssaoPass();
 };

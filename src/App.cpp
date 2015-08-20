@@ -84,8 +84,8 @@ void App::fire(Scene* scene)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, GL_MINOR);
 	if (params.MSAA > 0)
 	{
-		glfwWindowHint(GLFW_SAMPLES, params.MSAA);
 		glEnable(GL_MULTISAMPLE);
+		glfwWindowHint(GLFW_SAMPLES, params.MSAA);
 	}
 	else
 	{

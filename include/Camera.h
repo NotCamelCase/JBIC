@@ -20,7 +20,7 @@ SOFTWARE.
 
 #pragma once
 
-#include "base.h"
+#include "common.h"
 
 #include <glm\glm.hpp>
 

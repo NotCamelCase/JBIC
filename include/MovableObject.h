@@ -22,7 +22,7 @@ SOFTWARE.
 
 #include <glm\glm.hpp>
 
-#include <base.h>
+#include <common.h>
 
 class MovableObject
 {

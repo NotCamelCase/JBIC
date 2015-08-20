@@ -9,7 +9,7 @@ using glm::vec4;
 using glm::mat3;
 using glm::mat4;
 
-#include <base.h>
+#include <common.h>
 
 #include <ShaderProgram.h>
 #include <SceneObject.h>

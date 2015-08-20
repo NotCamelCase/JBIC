@@ -20,7 +20,7 @@ SOFTWARE.
 
 #include <SceneObject.h>
 
-#include <base.h>
+#include <common.h>
 
 #include <Mesh.h>
 #include <Scene.h>

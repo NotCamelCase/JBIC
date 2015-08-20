@@ -71,7 +71,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\App.h" />
-    <ClInclude Include="include\base.h" />
+    <ClInclude Include="include\common.h" />
     <ClInclude Include="include\Camera.h" />
     <ClInclude Include="include\FrameBuffer.h" />
     <ClInclude Include="include\GBuffer.h" />

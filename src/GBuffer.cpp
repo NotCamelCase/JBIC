@@ -24,7 +24,6 @@ bool GBuffer::fillGBuffer()
 	glBindRenderbuffer(GL_RENDERBUFFER, renderTex);
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT,
 		m_scene->getRenderParams().width, m_scene->getRenderParams().height);
-	glBindRenderbuffer(GL_RENDERBUFFER, 0);
 
 	posTex = createGBufferTexture(GBufferTexType::VERTEX_ATTRIB_POS);
 	normalTex = createGBufferTexture(GBufferTexType::VERTEX_ATTRIB_NORMAL);
@@ -79,10 +78,10 @@ uint GBuffer::getTextureFormat(GBufferTexType type)
 	case GBufferTexType::VERTEX_ATTRIB_NORMAL:
 		return GL_RGB32F;
 	case GBufferTexType::VERTEX_ATTRIB_UV:
-		return GL_RGB8;
+		return GL_RGB32F;
+	case GBufferTexType::MAT_ATTRIB_KA:
+	case GBufferTexType::MAT_ATTRIB_KD:
 	case GBufferTexType::MAT_ATTRIB_KS:
-		return GL_RGB8;
-	default: // Ka, Kd, Ks
 		return GL_RGB8;
 	}
 }
