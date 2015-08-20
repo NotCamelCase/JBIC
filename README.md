@@ -23,4 +23,4 @@ JBIC is a demo framework with a set of examples in which I've implemented follow
         * PCF
         * **Cascaded Shadow maps*
 * Deferred Shading
-* **Screen-space Ambient Occlusion*
+* Screen-space Ambient Occlusion
